@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C665B921F21E71F005A4478 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C665B911F21E71F005A4478 /* HomeViewController.swift */; };
 		5CF13C571F1EF478001A24CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF13C561F1EF478001A24CB /* AppDelegate.swift */; };
 		5CF13C591F1EF478001A24CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF13C581F1EF478001A24CB /* ViewController.swift */; };
 		5CF13C5C1F1EF478001A24CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CF13C5A1F1EF478001A24CB /* Main.storyboard */; };
@@ -14,6 +15,7 @@
 		5CF13C611F1EF479001A24CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CF13C5F1F1EF479001A24CB /* LaunchScreen.storyboard */; };
 		5CF13C6C1F1EF479001A24CB /* LTCameraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF13C6B1F1EF479001A24CB /* LTCameraTests.swift */; };
 		5CF13C771F1EF479001A24CB /* LTCameraUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF13C761F1EF479001A24CB /* LTCameraUITests.swift */; };
+		8E1E0FADC243C9C48292C2FB /* Pods_LTCamera.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDCCCFF715C6BBF9D1FF290A /* Pods_LTCamera.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5C665B911F21E71F005A4478 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5CF13C531F1EF478001A24CB /* LTCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LTCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CF13C561F1EF478001A24CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5CF13C581F1EF478001A24CB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +50,9 @@
 		5CF13C721F1EF479001A24CB /* LTCameraUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LTCameraUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CF13C761F1EF479001A24CB /* LTCameraUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTCameraUITests.swift; sourceTree = "<group>"; };
 		5CF13C781F1EF479001A24CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8FB3AB819BCA94A10576959B /* Pods-LTCamera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LTCamera.release.xcconfig"; path = "Pods/Target Support Files/Pods-LTCamera/Pods-LTCamera.release.xcconfig"; sourceTree = "<group>"; };
+		CDCCCFF715C6BBF9D1FF290A /* Pods_LTCamera.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LTCamera.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3D0BEAAEF4993C0DA29F541 /* Pods-LTCamera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LTCamera.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LTCamera/Pods-LTCamera.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E1E0FADC243C9C48292C2FB /* Pods_LTCamera.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +81,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		12CE160F2F27EE76245D812E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CDCCCFF715C6BBF9D1FF290A /* Pods_LTCamera.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		5CF13C4A1F1EF478001A24CB = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +96,8 @@
 				5CF13C6A1F1EF479001A24CB /* LTCameraTests */,
 				5CF13C751F1EF479001A24CB /* LTCameraUITests */,
 				5CF13C541F1EF478001A24CB /* Products */,
+				89E4FE4ADAADF25E424A5749 /* Pods */,
+				12CE160F2F27EE76245D812E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,6 +120,7 @@
 				5CF13C5D1F1EF479001A24CB /* Assets.xcassets */,
 				5CF13C5F1F1EF479001A24CB /* LaunchScreen.storyboard */,
 				5CF13C621F1EF479001A24CB /* Info.plist */,
+				5C665B911F21E71F005A4478 /* HomeViewController.swift */,
 			);
 			path = LTCamera;
 			sourceTree = "<group>";
@@ -125,6 +143,15 @@
 			path = LTCameraUITests;
 			sourceTree = "<group>";
 		};
+		89E4FE4ADAADF25E424A5749 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F3D0BEAAEF4993C0DA29F541 /* Pods-LTCamera.debug.xcconfig */,
+				8FB3AB819BCA94A10576959B /* Pods-LTCamera.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +159,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5CF13C7B1F1EF479001A24CB /* Build configuration list for PBXNativeTarget "LTCamera" */;
 			buildPhases = (
+				888C490E43802F2B3D7C8709 /* [CP] Check Pods Manifest.lock */,
 				5CF13C4F1F1EF478001A24CB /* Sources */,
 				5CF13C501F1EF478001A24CB /* Frameworks */,
 				5CF13C511F1EF478001A24CB /* Resources */,
+				1769CDB4A60A5A16262D917E /* [CP] Embed Pods Frameworks */,
+				475F768CA026554DB81EFD54 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -193,6 +223,7 @@
 				TargetAttributes = {
 					5CF13C521F1EF478001A24CB = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = U33J5W5C5M;
 						ProvisioningStyle = Automatic;
 					};
 					5CF13C661F1EF479001A24CB = {
@@ -254,6 +285,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1769CDB4A60A5A16262D917E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LTCamera/Pods-LTCamera-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		475F768CA026554DB81EFD54 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LTCamera/Pods-LTCamera-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		888C490E43802F2B3D7C8709 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5CF13C4F1F1EF478001A24CB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -261,6 +340,7 @@
 			files = (
 				5CF13C591F1EF478001A24CB /* ViewController.swift in Sources */,
 				5CF13C571F1EF478001A24CB /* AppDelegate.swift in Sources */,
+				5C665B921F21E71F005A4478 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,9 +490,12 @@
 		};
 		5CF13C7C1F1EF479001A24CB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3D0BEAAEF4993C0DA29F541 /* Pods-LTCamera.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = U33J5W5C5M;
 				INFOPLIST_FILE = LTCamera/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.LT.LTCamera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -422,9 +505,12 @@
 		};
 		5CF13C7D1F1EF479001A24CB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8FB3AB819BCA94A10576959B /* Pods-LTCamera.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = U33J5W5C5M;
 				INFOPLIST_FILE = LTCamera/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.LT.LTCamera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -505,6 +591,7 @@
 				5CF13C7D1F1EF479001A24CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5CF13C7E1F1EF479001A24CB /* Build configuration list for PBXNativeTarget "LTCameraTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +600,7 @@
 				5CF13C801F1EF479001A24CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5CF13C811F1EF479001A24CB /* Build configuration list for PBXNativeTarget "LTCameraUITests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +609,7 @@
 				5CF13C831F1EF479001A24CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
