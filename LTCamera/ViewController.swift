@@ -19,35 +19,21 @@ public func RGBA (r:CGFloat, g:CGFloat, b:CGFloat, a:CGFloat) -> UIColor {
 
 class ViewController: UIViewController {
 
-    fileprivate lazy var camera: GPUImageStillCamera? = GPUImageStillCamera(sessionPreset: AVCaptureSessionPresetHigh, cameraPosition: .front)
+    
+    fileprivate lazy var camera: GPUImageVideoCamera? = GPUImageVideoCamera(sessionPreset: AVCaptureSessionPresetHigh, cameraPosition: .front)
     
     fileprivate lazy var preView: GPUImageView  = {
         let preView = GPUImageView(frame: self.view.bounds)
         return preView
     }()
     
-    fileprivate lazy var filterView: LTFilterView  = {
-        let filterView = LTFilterView(frame: self.view.bounds)
-        return filterView
-    }()
-    
-    let bilateralFilter = GPUImageBilateralFilter() // 磨皮
-    let exposureFilter = GPUImageExposureFilter() // 曝光
-    let brightnessFilter = GPUImageBrightnessFilter() // 美白
     let saturationFilter = GPUImageSaturationFilter() // 饱和
+    let bilateralFilter = GPUImageBilateralFilter() // 磨皮
+    let brightnessFilter = GPUImageBrightnessFilter() // 美白
+    let exposureFilter = GPUImageExposureFilter() // 曝光
     
     fileprivate var player: AVPlayer?
     fileprivate var isEndRecording = false
-    
-    // 创建写入对象
-    fileprivate lazy var movieWriter : GPUImageMovieWriter = { [weak self] in
-        if FileManager.default.fileExists(atPath: (self?.pathString)!) {
-            try? FileManager.default.removeItem(atPath: (self?.pathString)!)
-        }
-        let movieWriter = GPUImageMovieWriter(movieURL: self?.fileURL, size: (self?.view.bounds.size)!)
-        movieWriter?.encodingLiveVideo = true
-        return movieWriter!
-    }()
     
     // 视频存放路径Url
     var fileURL : URL {
@@ -56,8 +42,26 @@ class ViewController: UIViewController {
     
     //视频存放路径
     var pathString: String {
-         return NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! + "/test.mp4"
+        return NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! + "/test.mp4"
     }
+    
+    // 创建写入对象
+    fileprivate lazy var movieWriter : GPUImageMovieWriter = { [weak self] in
+        if FileManager.default.fileExists(atPath: (self?.pathString)!) {
+            try? FileManager.default.removeItem(atPath: (self?.pathString)!)
+        }
+        let movieWriter = GPUImageMovieWriter(movieURL: self?.fileURL, size: (self?.view.bounds.size)!)
+        movieWriter?.encodingLiveVideo = true
+        
+        return movieWriter!
+    }()
+    
+    fileprivate lazy var filterView: LTFilterView  = {
+        let filterView = LTFilterView(frame: self.view.bounds)
+        return filterView
+    }()
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +82,10 @@ extension ViewController {
         //设置camera方向
         camera?.outputImageOrientation = .portrait
         camera?.horizontallyMirrorFrontFacingCamera = true
+        
+        ///防止允许声音通过的情况下，避免录制第一帧黑屏闪屏
+        camera?.addAudioInputsAndOutputs()
+        
         //获取滤镜组
         let filterGroup = getGroupFilters()
         //设置默认值
@@ -160,6 +168,7 @@ extension ViewController {
         guard let camera = camera else {
             fatalError("请退出程序重新录制！")
         }
+        /*
         camera.capturePhotoAsImageProcessedUp(toFilter: getGroupFilters(), withCompletionHandler: {[weak self] (image, error) in
             if error == nil {
                 UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
@@ -169,6 +178,7 @@ extension ViewController {
             }
             self?.endRecordSelected()
         })
+ */
     }
     
     //清除缓存
