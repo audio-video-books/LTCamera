@@ -68,8 +68,12 @@ class ViewController: UIViewController {
         layoutViews()
         conifgCamera()
         configSliderChange()
+        configSwitchChange()
     }
     
+    override var prefersStatusBarHidden: Bool{
+        return true
+    }
 }
 
 
@@ -163,11 +167,32 @@ extension ViewController {
         player?.play()
     }
     
+    
+    
     //拍照
     @objc fileprivate func takePhotoSelected() {
+        
         guard let camera = camera else {
             fatalError("请退出程序重新录制！")
         }
+        
+        if camera.isMember(of: GPUImageVideoCamera.self)  {
+            showAlert("请查看takePhotoSelected方法的说明")
+            return
+        }
+        
+        /*说明：
+        GPUImageVideoCamera：通常用于实时视频的录制
+         GPUImageStillCamera：用于拍摄当前手机的画面, 并且保存图片
+        1. 将
+        fileprivate lazy var camera: GPUImageVideoCamera? = GPUImageVideoCamera(sessionPreset: AVCaptureSessionPresetHigh, cameraPosition: .front)
+        改为
+        fileprivate lazy var camera: GPUImageStillCamera? = GPUImageStillCamera(sessionPreset: AVCaptureSessionPresetHigh, cameraPosition: .front)
+         
+        2. 取消以下注释
+         
+        */
+        
         /*
         camera.capturePhotoAsImageProcessedUp(toFilter: getGroupFilters(), withCompletionHandler: {[weak self] (image, error) in
             if error == nil {
@@ -178,7 +203,8 @@ extension ViewController {
             }
             self?.endRecordSelected()
         })
- */
+        */
+ 
     }
     
     //清除缓存
@@ -205,6 +231,7 @@ extension ViewController {
 //MARK: 根据滑动改变美颜效果
 extension ViewController {
     
+    //根据滑动改变美颜效果
     fileprivate func configSliderChange() {
         
         filterView.sliderDidValueChanged = {[weak self] (_, slider, type) in
@@ -227,6 +254,23 @@ extension ViewController {
                 self?.saturationFilter.saturation = CGFloat(slider.value) * 2.0
                 break
         
+            }
+        }
+        
+    }
+    
+    //开关美颜功能
+    fileprivate func configSwitchChange() {
+        
+        filterView.switchDidValueChanged = {[weak self] (_, filterSwitch, isOpen) in
+            if isOpen {
+                self?.camera?.removeAllTargets()
+                let group = self?.getGroupFilters()
+                self?.camera?.addTarget(group)
+                group?.addTarget(self?.preView)
+            }else{
+                self?.camera?.removeAllTargets()
+                self?.camera?.addTarget(self?.preView)
             }
         }
         
@@ -258,6 +302,8 @@ extension ViewController {
 }
 
 typealias sliderValueChangedClosure = (LTFilterView, UISlider, sliderFilterType) -> Void
+typealias switchValueChangedClosure = (LTFilterView, UISwitch, Bool) -> Void
+
 
 enum sliderFilterType: Int {
     case bilateralFilter = 0
@@ -272,6 +318,8 @@ class LTFilterView: UIView {
     fileprivate lazy var sliders: [UISlider] = [UISlider]()
     var sliderDidValueChanged: sliderValueChangedClosure?
     var filterType: sliderFilterType = .bilateralFilter
+    var switchDidValueChanged: switchValueChangedClosure?
+    
     
     fileprivate lazy var bgView: UIView = {
         let bgView = UIView(frame: CGRect(x: 0, y: kHeight, width: kWidth, height: self.bgHeight))
@@ -290,6 +338,20 @@ class LTFilterView: UIView {
     
 }
 
+//MARK:  点击空白处隐藏
+extension LTFilterView {
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let currentView = touches.first?.location(in: bgView) else {
+            return ;
+        }
+        if !self.point(inside: currentView, with: event)  {
+            dismiss()
+        }
+    }
+    
+}
+
 extension LTFilterView {
     
     fileprivate func configFilterView() {
@@ -297,6 +359,7 @@ extension LTFilterView {
         addSubview(bgView)
         configBgViewSubViews()
         configSlider()
+        configSwitch()
     }
     
     private func configBgViewSubViews() {
@@ -334,21 +397,30 @@ extension LTFilterView {
         }
     }
     
-    func sliderValueChanged(_ slider: UISlider) {
+    @objc private func sliderValueChanged(_ slider: UISlider) {
         guard let sliderDidValueChanged = sliderDidValueChanged else {
             return
         }
         sliderDidValueChanged(self, slider, sliderFilterType(rawValue: slider.tag) ?? .bilateralFilter)
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let currentView = touches.first?.location(in: bgView) else {
-            return ;
-        }
-        if !self.point(inside: currentView, with: event)  {
-            dismiss()
-        }
+    private func configSwitch() {
+        let filterSwitch = UISwitch()
+        filterSwitch.center = CGPoint(x: kWidth/2.0, y: 32)
+        filterSwitch.setOn(true, animated: true)
+        filterSwitch.onTintColor = RGBA(r: 231, g: 85, b: 87, a: 0.8)
+        filterSwitch.tintColor = RGBA(r: 231, g: 85, b: 87, a: 0.8)
+        filterSwitch.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged)
+        bgView.addSubview(filterSwitch)
     }
+    
+    @objc private func switchValueChanged(_ filterSwitch: UISwitch) {
+        guard let switchDidValueChanged = switchDidValueChanged else {
+            return
+        }
+        switchDidValueChanged(self, filterSwitch, filterSwitch.isOn)
+    }
+
 }
 
 extension LTFilterView {
